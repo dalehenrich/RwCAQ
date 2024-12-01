@@ -299,3 +299,43 @@ RwCAQTest >> testRwCAQ_Query_6 [
 		equals:
 			{'RwCAQ-Core' } .
 ]
+
+{ #category : 'tests' }
+RwCAQTest >> testRwCAQ_Query_7 [
+	"avoid having to compare booleans to true/false in the expression"
+
+	| project components loadComponentName packages |
+	components := {}.
+	loadComponentName := 'Core'.
+	components
+		add:
+				(RwCAQLoadComponent_1 new
+						name: 'Core';
+						addPackageNamed: 'RwCAQ-Core';
+						addComponentNamed: 'tests/Tests';
+						yourself);
+		add:
+				(RwCAQConditionalComponent_3 new
+						name: 'tests/Tests';
+						addPackageNamed: 'RwCAQ-Tests';
+						queryString: '((3.6.2 >= each.gemstoneVersion) & (tests))';
+						yourself);
+		yourself.	
+	project := RwCAQProject_1 new
+		name: 'project';
+		components: components;
+		gemstoneVersion: '3.6.2' asRwGemStoneVersionNumber;
+		attributes: {'tests'};
+		yourself.
+	packages := project packagesToLoad: loadComponentName.
+	self
+		assert: packages asArray sort
+		equals:
+			{'RwCAQ-Core' .  'RwCAQ-Tests'} sort.
+	project attributes: {}.
+	packages := project packagesToLoad: loadComponentName.
+	self
+		assert: packages asArray sort
+		equals:
+			{'RwCAQ-Core' } .
+]
