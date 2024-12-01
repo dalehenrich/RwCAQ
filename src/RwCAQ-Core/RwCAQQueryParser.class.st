@@ -210,7 +210,6 @@ RwCAQQueryParser >> rangePredicateExpression [
         path: queryPath1 asReferenceAssociation
         operator: relop2 inputValue asSymbol
         operand: primary2 asReferenceAssociation ]
-
 ]
 
 { #category : 'grammar-messages' }

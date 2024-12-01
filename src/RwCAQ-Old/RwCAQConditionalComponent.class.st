@@ -50,8 +50,8 @@ RwCAQConditionalComponent >> queryString [
 ]
 
 { #category : 'accessing' }
-RwCAQConditionalComponent >> queryString: object [
-	queryString := object
+RwCAQConditionalComponent >> queryString: aString [
+	queryString := aString trimBoth
 ]
 
 { #category : 'accessing' }

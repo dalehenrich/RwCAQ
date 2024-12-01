@@ -168,7 +168,7 @@ RwCAQTest >> testRwCAQ_Query_3 [
 						name: 'tests/Tests';
 						condition: 'tests';
 						addPackageNamed: 'RwCAQ-Tests';
-						queryString: '3.6.1< each.gemstoneVersion ';
+						queryString: '3.6.1 < each.gemstoneVersion';
 						yourself);
 		yourself.	
 	project := RwCAQProject_1 new
