@@ -1,0 +1,23 @@
+RwLoadComponent {
+	#name : 'Core',
+	#projectNames : [ ],
+	#componentNames : [ ],
+	#packageNames : [
+		'RwCAQ-Core',
+		'RwCAQ-GemStone',
+		'RwCAQ-Old',
+		'RwCAQ-Tests'
+	],
+	#conditionalPackageMapSpecs : {
+		'gemstone' : {
+			'allusers' : {
+				#packageNameToPlatformPropertiesMap : {
+					'RwCAQ-GemStone' : {
+						'symbolDictName' : 'RowanTools'
+					}
+				}
+			}
+		}
+	},
+	#comment : ''
+}
