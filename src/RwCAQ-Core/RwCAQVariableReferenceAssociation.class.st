@@ -6,11 +6,10 @@ Class {
 
 { #category : 'converting' }
 RwCAQVariableReferenceAssociation >> asFormula [
-  ^ GsConstantConstantPredicate new
+  ^ RwCAQConstantConstantPredicate new
     constant1: self;
     operator: #'unary';
     immediateInvariant
-
 ]
 
 { #category : 'accessing' }
