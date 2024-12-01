@@ -262,6 +262,5 @@ RwCAQQueryParser >> trueLiteral [
 { #category : 'grammar' }
 RwCAQQueryParser >> variable [
   ^ super variable
-    ==> [ :token | GsVariableReferenceAssociation newWithKey: token inputValue asString value: nil ]
-
+    ==> [ :token | RwCAQVariableReferenceAssociation newWithKey: token inputValue asString value: nil ]
 ]

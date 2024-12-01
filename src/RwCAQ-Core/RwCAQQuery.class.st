@@ -8,3 +8,10 @@ Class {
 RwCAQQuery class >> fromString: aString [
   ^ self fromFormula: (RwCAQQueryPredicate fromQueryStatement: aString)
 ]
+
+{ #category : 'accessing' }
+RwCAQQuery >> formula [
+	"no query optimization"
+
+	^ formula
+]

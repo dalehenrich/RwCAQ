@@ -219,3 +219,43 @@ RwCAQTest >> testRwCAQ_Query_4 [
 		equals:
 			{'RwCAQ-Core'} sort.
 ]
+
+{ #category : 'tests' }
+RwCAQTest >> testRwCAQ_Query_5 [
+	"use the attribute names as bound varibles in the query so the attribute names can be reasoned about in the query ... no need to define a condition .... the query handles all conditions "
+
+	| project components loadComponentName packages |
+	components := {}.
+	loadComponentName := 'Core'.
+	components
+		add:
+				(RwCAQLoadComponent_1 new
+						name: 'Core';
+						addPackageNamed: 'RwCAQ-Core';
+						addComponentNamed: 'tests/Tests';
+						yourself);
+		add:
+				(RwCAQConditionalComponent_3 new
+						name: 'tests/Tests';
+						addPackageNamed: 'RwCAQ-Tests';
+						queryString: '(3.6.2 >= each.gemstoneVersion) & (tests = true)';
+						yourself);
+		yourself.	
+	project := RwCAQProject_1 new
+		name: 'project';
+		components: components;
+		gemstoneVersion: '3.6.2' asRwGemStoneVersionNumber;
+		attributes: {'tests'};
+		yourself.
+	packages := project packagesToLoad: loadComponentName.
+	self
+		assert: packages asArray sort
+		equals:
+			{'RwCAQ-Core' .  'RwCAQ-Tests'} sort.
+	project attributes: {}.
+	packages := project packagesToLoad: loadComponentName.
+	self
+		assert: packages asArray sort
+		equals:
+			{'RwCAQ-Core' } .
+]
