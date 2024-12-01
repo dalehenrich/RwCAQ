@@ -184,3 +184,38 @@ RwCAQTest >> testRwCAQ_Query_3 [
 			{'RwCAQ-Tests'.
 			'RwCAQ-Core'} sort.
 ]
+
+{ #category : 'tests' }
+RwCAQTest >> testRwCAQ_Query_4 [
+	"literal RwGemStoneVersionNumber in the query ..."
+
+	| project components loadComponentName packages |
+	components := {}.
+	loadComponentName := 'Core'.
+	components
+		add:
+				(RwCAQLoadComponent_1 new
+						name: 'Core';
+						addPackageNamed: 'RwCAQ-Core';
+						addComponentNamed: 'tests/Tests';
+						yourself);
+		add:
+				(RwCAQConditionalComponent_2 new
+						name: 'tests/Tests';
+						condition: 'tests';
+						addPackageNamed: 'RwCAQ-Tests';
+						queryString: '(3.6.1 > each.gemstoneVersion) | (3.7.2 < each.gemstoneVersion)';
+						yourself);
+		yourself.	
+	project := RwCAQProject_1 new
+		name: 'project';
+		components: components;
+		gemstoneVersion: '3.6.2' asRwGemStoneVersionNumber;
+		attributes: {'tests'};
+		yourself.
+	packages := project packagesToLoad: loadComponentName.
+	self
+		assert: packages asArray sort
+		equals:
+			{'RwCAQ-Core'} sort.
+]
