@@ -25,7 +25,7 @@ RwCAQConditionalComponent_3 >> packagesToLoadUsing: aProject [
 	theQuery := nil.
 	aProject attributes do: [ :attribute | self theQuery bind: attribute to: true ].
 	self gemstoneVersion: aProject gemstoneVersion.
-	thePackages := (self theQuery on: {self}) isEmpty
+	thePackages := (self theQuery on: (Set with: self)) isEmpty
 		ifTrue: [ Set new ]
 		ifFalse: [ self packages ].
 	self componentNames
