@@ -41,10 +41,7 @@ RwCAQConditionalComponent >> packagesToLoadUsing: aProject [
 
 { #category : 'accessing' }
 RwCAQConditionalComponent >> query [
-	^ (GsQuery fromString: self queryString)
-		bind: 'v361' to: '3.6.1' asRwGemStoneVersionNumber;
-		bind: 'v370' to: '3.7.0' asRwGemStoneVersionNumber;
-		yourself
+	^ RwCAQQuery fromString: self queryString
 ]
 
 { #category : 'accessing' }

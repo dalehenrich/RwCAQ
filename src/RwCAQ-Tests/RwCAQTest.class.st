@@ -23,7 +23,7 @@ RwCAQTest >> testBasic_1 [
 						name: 'tests/Tests';
 						condition: 'tests';
 						addPackageNamed: 'RwCAQ-Tests';
-						queryString: 'v361 < each.gemstoneVersion <= v370';
+						queryString: '3.6.1 < each.gemstoneVersion <= 3.7.0';
 						yourself);
 		yourself.	"each is traversal on conditional attributes "
 	project := RwCAQProject_1 new
@@ -96,7 +96,7 @@ RwCAQTest >> testRwCAQ_Query_1 [
 						name: 'tests/Tests';
 						condition: 'tests';
 						addPackageNamed: 'RwCAQ-Tests';
-						queryString: 'v361 < each.gemstoneVersion <= v370';
+						queryString: '3.6.1 < each.gemstoneVersion <= 3.7.0';
 						yourself);
 		yourself.	
 	project := RwCAQProject_1 new
