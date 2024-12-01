@@ -1,14 +1,14 @@
 ### Rowan Component Activation Query
 
-Create a variant of the GsQuery subsystem that allows for the creation of queries like the following:
+An extension on the GsQuery subsystem that allows for the creation of queries like the following:
 ```
 3.6.1 < each.gemstoneVersion <= 3.7.0
 
-(3.6.1 < each.gemstoneVersion <= 3.7.0) & (each.attribute = 'tests')
+(3.6.1 < each.gemstoneVersion <= 3.7.0) & (tests = true) | (ci = true))
 ```
-where the numeric-ish literals (like `3.7.0`) are interpretted as instance of RwGemStoneVersionNumber.
+where the numeric-ish literals (like `3.7.0`) are interpretted as instances of RwGemStoneVersionNumber.  The variables ('tests' and 'ci') represent attrbute values ... if the attribute is present, it's value is `true`, otherwise it's value is `false'.
 
-We cannot execute "foreign" Smalltalk code during the load process, so the plan is to create a variant of the GsQuery grammar that can be safely executed.
+These expressions are used in Rowan conditional components to determine whether the packages associated with the component should be loaded or not...
 
 ### Install script for Rowan Component Activation Query project (RwCAQ)
 ```
